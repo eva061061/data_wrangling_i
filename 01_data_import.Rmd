@@ -3,19 +3,57 @@ title: "Data Import"
 output: github_document
 ---
 
-I'm an R Markdown document! 
-
-# Section 1
-
-Here's a **code chunk** that samples from 
-a _normal distribution_:
-
+This is for doig data import
 ```{r}
-samp = rnorm(100)
-length(samp)
+library(tidyverse)
 ```
 
-# Section 2
 
-I can take the mean of the sample, too!
-The mean is `r mean(samp)`.
+Import our first dataset
+
+```{r}
+litters_df=
+  read_csv(
+    file = "data/data_import_examples/FAS_litters.csv",
+    na = c("","NA，".")
+  )
+
+litters_df = janitor::clean_names(litters_df)
+```
+import ur second data
+
+把什么变成加好？？
+
+
+
+```{r}
+pups_df=
+  read_csv("data/data_import_examples/FAS_pups.csv", 
+           skip = 3,
+           na = c("","NA，".")
+  )
+
+pups_df =janitor::clean_names(pups_df)
+```
+## Look the data
+```{r}
+
+litters_df
+pups_df
+```
+
+Head or tail 
+
+```{r}
+head(litters_df, 20)
+
+tails(pups_df, 5)
+```
+
+Skimming??
+
+```{r}
+skimr::skim(pups_df)
+```
+
+
